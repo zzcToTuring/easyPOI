@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>效果预览</title>
+</head>
+<body>
+<div id="app">
+  hello world {{user}}
+  <button v-on:click="down"> 文件下载 </button>
+</div>
+</body>
+
+<script src="./vuejs-2.5.16.js"></script>
+<script src="./axios-0.18.0.js"></script>
+<script>
+  new Vue({
+    el:"#app",
+    data:{
+      user:"zzc"
+    },
+    created(){
+      console.log("create OK!")
+    },
+    methods:{
+      down(){
+        console.log("111111");
+          window.open("/down")
+      }
+    }
+  })
+</script>
+
+</html>
