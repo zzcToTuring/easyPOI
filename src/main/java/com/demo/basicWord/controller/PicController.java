@@ -25,7 +25,7 @@ public class PicController {
     @Autowired
     private ImageUtil imageUtil;
 
-    @GetMapping(value = "down1",name = "下载")
+    @GetMapping(value = "down",name = "下载")
     public void down(HttpServletResponse response) throws Exception {
         picService.down(response);
     }

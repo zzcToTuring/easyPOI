@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-//@RequestMapping("/student")
+@RequestMapping("/student")
 public class StudentInfoController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class StudentInfoController {
 
     @GetMapping("/view")
     public String testView(){
-        return "student.html";
+        return "../student.html";
     }
 
     @GetMapping(value = "/down",name="下载订单文档")

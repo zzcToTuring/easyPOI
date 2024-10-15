@@ -4,9 +4,6 @@ package com.demo.basicWord.controller;
 
 
 import com.demo.basicWord.service.TepService;
-import com.demo.basicWord.service.impl.StudentInfoServiceImpl;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
