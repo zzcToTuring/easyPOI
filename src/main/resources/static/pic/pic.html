@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>图片预览</title>
+</head>
+<body>
+<div id="app">
+    {{test}}
+
+    <br>
+    <img :src="imageUrl" alt="Fetched Image" v-if="imageUrl" width="100px" height="100px"/>
+</div>
+</body>
+<script src="../JS/vuejs-2.5.16.js"></script>
+<script src="../JS/axios-0.18.0.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            test:"1",
+            imageUrl:""
+        },
+         created(){
+            console.log("created!")
+             axios.get('http://127.0.0.1:8080/pic/viewPic', { responseType: 'blob' }).then(res=>{
+                 const url = URL.createObjectURL(res.data);
+                 this.imageUrl = url;
+             })
+        }
+    })
+</script>
+
+</html>
