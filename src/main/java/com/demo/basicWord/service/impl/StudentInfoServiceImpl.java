@@ -7,7 +7,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -20,49 +23,15 @@ import org.springframework.util.ResourceUtils;
  * @功能描述
  **/
 @Service
-public class StudentInfoServiceImpl implements StudentInfoService {
+public class  StudentInfoServiceImpl implements StudentInfoService {
 
     @Override
     public void down(HttpServletResponse response) throws Exception {
         File rootPath = new File(ResourceUtils.getURL("classpath:").getPath()); //SpringBoot项目获取根目录的方式
         File templatePath = new File(rootPath.getAbsolutePath(),"/templates/studentInfo.docx");
-        //准备导出数据
-        //查询所有用户数
-        // 生成 Random 对象
 
         //给对象进行赋值
-        StudentInfo studentInfo = new StudentInfo();
-        studentInfo.setYx("信息工程");
-        studentInfo.setZy("计科");
-        studentInfo.setNj("2020");
-        studentInfo.setBj("1");
-        studentInfo.setXh("123");
-        studentInfo.setName("肖");
-        studentInfo.setSex("男");
-        studentInfo.setBirthday("2000");
-        studentInfo.setJg("四川");
-        studentInfo.setSfzhm("2512312");
-        studentInfo.setJtrk("4");
-        studentInfo.setPhone("191");
-        studentInfo.setXxdz("四川省");
-        studentInfo.setYzbm("641300");
-        studentInfo.setJzsjh("13555");
-        studentInfo.setXf("1400");
-        studentInfo.setZsf("800");
-        studentInfo.setJzxm("xy");
-        studentInfo.setJznj("55");
-        studentInfo.setYxsgx("父子");
-        studentInfo.setGzdw("无");
-        studentInfo.setJob("无");
-        studentInfo.setJznsr("20");
-        studentInfo.setJkzt("健康");
-        studentInfo.setJtnsr("30000");
-        studentInfo.setQm("肖");
-        studentInfo.setN("2020");
-        studentInfo.setY("2");
-        studentInfo.setR("10");
-        
-       // studentInfo studentInfo= this.list().get(number);
+        StudentInfo studentInfo = this.getInfo();
         Map<String,Object> params = new HashMap<String,Object>();
         String yx = studentInfo.getYx();
         String zy = studentInfo.getZy();
@@ -135,5 +104,41 @@ public class StudentInfoServiceImpl implements StudentInfoService {
         response.setHeader( "Content-Disposition", "attachment;filename="  + new String(filename.getBytes(),"ISO8859-1"));
         response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         xwpfDocument.write(outputStream);
+    }
+
+    @Override
+    public StudentInfo getInfo() throws Exception {
+        //随机构建数据
+        StudentInfo studentInfo = new StudentInfo();
+        studentInfo.setYx("信息工程");
+        studentInfo.setZy("计科");
+        studentInfo.setNj("2020");
+        studentInfo.setBj("1");
+        studentInfo.setXh("123");
+        studentInfo.setName("肖");
+        studentInfo.setSex("男");
+        studentInfo.setBirthday("2000");
+        studentInfo.setJg("四川");
+        studentInfo.setSfzhm("2512312");
+        studentInfo.setJtrk("4");
+        studentInfo.setPhone("191");
+        studentInfo.setXxdz("四川省");
+        studentInfo.setYzbm("641300");
+        studentInfo.setJzsjh("13555");
+        studentInfo.setXf("1400");
+        studentInfo.setZsf("800");
+        studentInfo.setJzxm("xy");
+        studentInfo.setJznj("55");
+        studentInfo.setYxsgx("父子");
+        studentInfo.setGzdw("无");
+        studentInfo.setJob("无");
+        studentInfo.setJznsr("20");
+        studentInfo.setJkzt("健康");
+        studentInfo.setJtnsr("30000");
+        studentInfo.setQm("肖");
+        studentInfo.setN("2020");
+        studentInfo.setY("2");
+        studentInfo.setR("10");
+        return studentInfo;
     }
 }

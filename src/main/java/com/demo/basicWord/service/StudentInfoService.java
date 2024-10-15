@@ -1,6 +1,9 @@
 package com.demo.basicWord.service;
 
 
+import com.demo.basicWord.entity.StudentInfo;
+import org.apache.poi.ss.formula.functions.T;
+
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -11,4 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public interface StudentInfoService {
     void down(HttpServletResponse response) throws Exception;
+
+    StudentInfo getInfo() throws Exception;
 }

@@ -7,6 +7,14 @@
 <body>
 <div id="app">
   hello world {{user}}
+
+    --预览示例
+
+    学生姓名：{{student.name}}
+
+    <br>
+    学生学院：{{student.yx}}
+
   <button v-on:click="down"> 文件下载 </button>
 </div>
 </body>
@@ -17,10 +25,16 @@
   new Vue({
     el:"#app",
     data:{
-      user:"zzc"
+      user:"zzc",
+      student:{}
     },
+
     created(){
       console.log("create OK!")
+        axios.get("/getData").then(res=>{
+            this.student=res.data
+        })
+
     },
     methods:{
       down(){
