@@ -3,7 +3,9 @@ package com.demo.basicWord.service.impl;
 import cn.afterturn.easypoi.entity.ImageEntity;
 import cn.afterturn.easypoi.word.WordExportUtil;
 import com.demo.basicWord.service.PicService;
+import com.demo.basicWord.util.ImageUtil;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -16,6 +18,9 @@ import java.util.Map;
 @Service
 public class PicServiceImpl implements PicService {
 
+    @Autowired
+    private ImageUtil imageUtil;
+
     @Override
     public void down(HttpServletResponse response) throws Exception {
 
@@ -25,7 +30,7 @@ public class PicServiceImpl implements PicService {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("age","一级标题");
         params.put("name","二级标题");
-        params.put("img",imgFormatting("templates/pic.png",100,100));
+        params.put("img",imageUtil.imgFormatting("templates/pic.png",100,100));
 
         XWPFDocument xwpfDocument = WordExportUtil.exportWord07(templatePath.getPath(), params);
         String filename="导出word.docx";
@@ -37,12 +42,6 @@ public class PicServiceImpl implements PicService {
 
     }
 
-    private ImageEntity imgFormatting(String imgPath, int width, int height) {
-        //设置图片
-        ImageEntity image = new ImageEntity(imgPath, width, height);
-        //表格外添加简单图片
-        image.setType(ImageEntity.URL);
-        return image;
-    }
+
 
 }

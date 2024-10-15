@@ -1,5 +1,6 @@
 package com.demo.basicWord.controller;
 
+import cn.afterturn.easypoi.entity.ImageEntity;
 import com.demo.basicWord.service.PicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,4 +22,13 @@ public class PicController {
     public void down(HttpServletResponse response) throws Exception {
         picService.down(response);
     }
+
+    @GetMapping(value = "view",name="预览")
+    public ImageEntity view(HttpServletResponse response) throws Exception {
+
+
+        return null;
+    }
+
+
 }
