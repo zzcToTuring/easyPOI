@@ -19,8 +19,8 @@
 </div>
 </body>
 
-<script src="JS/vuejs-2.5.16.js"></script>
-<script src="JS/axios-0.18.0.js"></script>
+<script src="../JS/vuejs-2.5.16.js"></script>
+<script src="../JS/axios-0.18.0.js"></script>
 <script>
   new Vue({
     el:"#app",
@@ -38,8 +38,16 @@
     },
     methods:{
       down(){
-        console.log("111111");
-          window.open("/down")
+        //console.log("111111");
+         // window.open("/down")
+          fetch("http://localhost:8300/v1/0/cost-infos/view",{
+              method: 'GET',
+              headers: {
+                  'Jwt_Token': 'iJIUzI1Ni'
+              }
+          }).then(data=>{
+              window.location.href = 'http://localhost:8300/v1/0/cost-infos/view'
+          })
       }
     }
   })
