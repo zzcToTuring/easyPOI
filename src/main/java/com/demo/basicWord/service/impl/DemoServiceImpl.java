@@ -2,6 +2,7 @@ package com.demo.basicWord.service.impl;
 
 import cn.afterturn.easypoi.word.WordExportUtil;
 import com.demo.basicWord.service.DemoService;
+import com.demo.basicWord.util.ImageUtil;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -16,6 +17,12 @@ import java.util.Map;
 
 @Service
 public class DemoServiceImpl implements DemoService {
+    private final ImageUtil imageUtil;
+
+    public DemoServiceImpl(ImageUtil imageUtil) {
+        this.imageUtil = imageUtil;
+    }
+
     @Override
     public void down(HttpServletResponse response) throws Exception {
 
@@ -61,7 +68,11 @@ public class DemoServiceImpl implements DemoService {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("update_date","2099-99-99");
         params.put("button","●");
+        params.put("button1","1●");
+        params.put("qwer","44513");
+        params.put("坐温定义","开机时，坐温保持设置温度；检测到着坐信号后，坐圈表面温度逐渐下降，最后保持在34℃（对应软件设定37℃）；离坐后坐温加热到设置温度。");
         params.put("resourceList",resourceList);
+        params.put("dqzc",imageUtil.imgFormatting("templates/规格书/dqzc.png",100,100));
 
 
         XWPFDocument xwpfDocument = WordExportUtil.exportWord07(templatePath.getPath(), params);
