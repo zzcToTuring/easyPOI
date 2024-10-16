@@ -44,9 +44,12 @@ public class TepServiceImpl implements TepService {
         //resourceList.add(userLine2);
 
         //编辑数据
-        userLine1.put("name","zs");
+        userLine1.put("name","zssssss");
         userLine2.put("name","ls");
-        userLine1.put("remark","**********");
+        userLine1.put("remark","123");
+        userLine1.put("remarks","123s");
+        userLine1.put("remarkss","12s3");
+
         userLine2.put("remark","******");
         userLine1.put("isTrue",false);
         userLine2.put("isTrue",true);
