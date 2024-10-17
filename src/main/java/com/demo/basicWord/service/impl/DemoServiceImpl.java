@@ -1,6 +1,8 @@
 package com.demo.basicWord.service.impl;
 
 import java.lang.reflect.Field;
+
+import cn.afterturn.easypoi.entity.ImageEntity;
 import com.demo.basicWord.entity.Demo;
 import com.demo.basicWord.service.DemoService;
 import com.demo.basicWord.util.ExportUtil;
@@ -9,8 +11,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -42,11 +42,17 @@ public class DemoServiceImpl implements DemoService {
             field.setAccessible(true);
             String fieldName = field.getName();
             Object value = field.get(demo);
+            if ("dqzc".equals(fieldName)){
+                Demo.Image image=(Demo.Image) value;
+                params.put(fieldName,imageUtil.imgFormatting(image.getPathUrl(),image.getWidth(),image.getHeight()));
+            }
             params.put(fieldName, value);
         }
         exportUtil.exportWord(response,templatePath.getPath(),params);
 
     }
+
+
 
     @Override
     public void downMap(HttpServletResponse response, HashMap<String, Object> param) throws Exception {
@@ -55,6 +61,8 @@ public class DemoServiceImpl implements DemoService {
         Map<String,Object> params = new HashMap<String,Object>();
         exportUtil.exportWord(response,templatePath.getPath(),params);
     }
+
+
 
 
 }
